@@ -37,3 +37,22 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+-------------------------------------------------------------------------------------
+-- Customizations
+-------------------------------------------------------------------------------------
+
+-- Enable fixes suggested by an LSP server, e.g. clangd
+-- See: https://stackoverflow.com/questions/67988374/neovim-lsp-auto-fix-fix-current
+local qfopts = { noremap = true, silent = true }
+
+local function quickfix()
+  vim.lsp.buf.code_action({
+    filter = function(a) return a.isPreferred end,
+    apply = true
+  })
+end
+
+vim.keymap.set('n', '<leader>qf', quickfix, qfopts)
+--
+--
