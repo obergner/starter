@@ -35,7 +35,6 @@ vim.g.rustaceanvim = {
       -- or vim.lsp.buf.codeAction() if you don't want grouping.
       map({ "n", "v" }, "<leader>ca", vim.cmd.RustLsp "codeAction", opts "Code action")
 
-      -- TODO: These bindings using RustLsp do not yet work
       -- Use debug configurations created by rust-analyzer
       map("n", "<leader>dd", function()
         vim.cmd.RustLsp "debug"

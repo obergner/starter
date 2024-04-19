@@ -47,8 +47,14 @@ end
 
 vim.keymap.set("n", "<leader>fq", quickfix, { noremap = true, silent = true, desc = "LSP quick fix" })
 
--- Neotest: running a test
 -- TODO: Consider moving this code to somewhere better suited
+-- See> https://haseebmajid.dev/posts/2023-07-31-how-to-use-neotest-dap-with-lazyvim-for-golang-development/
+-- Neotest: running a test
 vim.keymap.set("n", "<leader>tn", function()
   require("neotest").run.run()
 end, { noremap = true, silent = true, desc = "Run nearest test (neotest)" })
+
+-- Neotest: toggle summary window
+vim.keymap.set("n", "<leader>ts", function()
+  require("neotest").summary.toggle()
+end, { noremap = true, silent = true, desc = "Toggle test summary (neotest)" })
