@@ -34,10 +34,16 @@ map({ "n", "v" }, "<leader>ca", vim.cmd.RustLsp "codeAction", opts "Code action"
 
 -- TODO: These bindings using RustLsp do not yet work
 -- Use debug configurations created by rust-analyzer
-map("n", "<leader>dd", vim.cmd.RustLsp "debug", opts "Debug (rust-analyzer)")
+map("n", "<leader>dd", function()
+  vim.cmd.RustLsp "debug"
+end, opts "Debug (rust-analyzer)")
 
 -- Let rust-analyzer search for a runnable at the current cursor position
-map("n", "<leader>rr", vim.cmd.RustLsp "run", opts "Run (rust-analyzer)")
+map("n", "<leader>rr", function()
+  vim.cmd.RustLsp "run"
+end, opts "Run (rust-analyzer)")
 
 -- Let rust-analyzer list all testables in the current scope
-map("n", "<leader>tt", vim.cmd.RustLsp "run", opts "List tests (rust-analyzer)")
+map("n", "<leader>tt", function()
+  vim.cmd.RustLsp "testables"
+end, opts "List tests (rust-analyzer)")

@@ -33,3 +33,16 @@ lspconfig.clangd.setup {
   end,
   capabilities = capabilities,
 }
+
+-- Enable fixes suggested by an LSP server, e.g. clangd
+-- See: https://stackoverflow.com/questions/67988374/neovim-lsp-auto-fix-fix-current
+local function quickfix()
+  vim.lsp.buf.code_action {
+    filter = function(a)
+      return a.isPreferred
+    end,
+    apply = true,
+  }
+end
+
+vim.keymap.set("n", "<leader>fq", quickfix, { noremap = true, silent = true, desc = "LSP quick fix" })
