@@ -118,4 +118,68 @@ return {
       end
     end,
   },
+
+  -------------------------------------------------------------------------------------
+  -- auto-cd to root of git project
+  -- 'airblade/vim-rooter'
+  -------------------------------------------------------------------------------------
+
+  -- TODO: FixIt - This does not seem to work righ now :-(
+  {
+    "notjedi/nvim-rooter.lua",
+    config = function()
+      require("nvim-rooter").setup()
+    end,
+  },
+  -- Extend NVChad's default options for nvim-tree to support nvim-rooter
+  -- See: https://github.com/notjedi/nvim-rooter.lua?tab=readme-ov-file#usage
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = function()
+      local opts = require "nvchad.configs.nvimtree"
+      opts.update_cwd = true
+      opts.update_focused_file = {
+        enable = true,
+        update_cwd = true,
+      }
+      return opts
+    end,
+  },
+
+  -------------------------------------------------------------------------------------
+  -- inline function signatures
+  -------------------------------------------------------------------------------------
+
+  -- TODO: FixIt - This does not seem to work righ now :-(
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = function()
+      return require "configs.lsp_signature"
+    end,
+    config = function(_, opts)
+      require("lsp_signature").setup(opts)
+    end,
+  },
+
+  -------------------------------------------------------------------------------------
+  -- Use neotest for executing tests:
+  -- https://github.com/nvim-neotest/neotest
+  --
+  -- ATTENTION: Do NOT install neotest-rust adapter since we use rustaceanvim's neotest
+  --            integration (https://github.com/mrcjkb/rustaceanvim?tab=readme-ov-file)
+  -------------------------------------------------------------------------------------
+
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require "configs.neotest"
+    end,
+  },
 }
