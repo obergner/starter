@@ -17,3 +17,6 @@ map("i", "jk", "<ESC>")
 
 map("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>", { desc = "Toggle breakpoint at line" })
 map("n", "<leader>dr", "<cmd> DapContinue <CR>", { desc = "Start or continue debugging" })
+
+-- LSP
+map("n", "K", vim.lsp.buf.hover, { noremap = true, silent = true, desc = "Show LSP hover actions" })
