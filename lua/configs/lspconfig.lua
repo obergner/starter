@@ -46,3 +46,9 @@ local function quickfix()
 end
 
 vim.keymap.set("n", "<leader>fq", quickfix, { noremap = true, silent = true, desc = "LSP quick fix" })
+
+-- Neotest: running a test
+-- TODO: Consider moving this code to somewhere better suited
+vim.keymap.set("n", "<leader>tn", function()
+  require("neotest").run.run()
+end, { noremap = true, silent = true, desc = "Run nearest test (neotest)" })
