@@ -29,6 +29,7 @@ return {
         "clang-format",
         "codelldb",
         "rust-analyzer",
+        "pyright",
       },
     },
   },

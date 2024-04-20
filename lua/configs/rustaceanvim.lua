@@ -1,7 +1,7 @@
 vim.g.rustaceanvim = {
   -- LSP configuration
   server = {
-    on_attach = function(client, bufnr)
+    on_attach = function(_, bufnr)
       local map = vim.keymap.set
       local function opts(desc)
         return { buffer = bufnr, desc = "LSP " .. desc }

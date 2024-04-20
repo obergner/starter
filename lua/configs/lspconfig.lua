@@ -4,7 +4,7 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls" }
+local servers = { "pyright" }
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
@@ -15,16 +15,13 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- typescript
-lspconfig.tsserver.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-}
-
 -------------------------------------------------------------------------------------
 -- Customizations
 -------------------------------------------------------------------------------------
+
+-- Experiment: does this show the inferred type?
+-- Available starting with neovim 0.10.x
+--vim.lsp.inlay_hint.enable(true)
 
 lspconfig.clangd.setup {
   on_attach = function(client, bufnr)
