@@ -58,3 +58,13 @@ end, { noremap = true, silent = true, desc = "Run nearest test (neotest)" })
 vim.keymap.set("n", "<leader>ts", function()
   require("neotest").summary.toggle()
 end, { noremap = true, silent = true, desc = "Toggle test summary (neotest)" })
+
+-- Neotest: Show test output
+vim.keymap.set("n", "<leader>to", function()
+  require("neotest").output.open { enter = true, auto_close = true }
+end, { noremap = true, silent = true, desc = "Show test output (neotest)" })
+
+-- Neotest: Toggle output panel
+vim.keymap.set("n", "<leader>tO", function()
+  require("neotest").summary.toggle()
+end, { noremap = true, silent = true, desc = "Toggle test output panel (neotest)" })
