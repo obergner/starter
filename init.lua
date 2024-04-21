@@ -41,3 +41,11 @@ end)
 -------------------------------------------------------------------------------------
 -- Customizations
 -------------------------------------------------------------------------------------
+
+-- Close neovim if only nvim-tree fileexplorer left (naive implementation)
+-- For more advanced alternatives see: https://github.com/nvim-tree/nvim-tree.lua/wiki/Auto-Close
+vim.api.nvim_create_autocmd({ "QuitPre" }, {
+  callback = function()
+    vim.cmd "NvimTreeClose"
+  end,
+})

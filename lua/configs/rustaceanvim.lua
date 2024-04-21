@@ -2,6 +2,10 @@ vim.g.rustaceanvim = {
   -- LSP configuration
   server = {
     on_attach = function(_, bufnr)
+      --------------------------------------------------------------------------------------------
+      -- Keymappings
+      ---------------------------------------------------------------------------------------------
+
       local map = vim.keymap.set
       local function opts(desc)
         return { buffer = bufnr, desc = "LSP " .. desc }
@@ -27,6 +31,14 @@ vim.g.rustaceanvim = {
       end, opts "NvRenamer")
 
       map("n", "gr", vim.lsp.buf.references, opts "Show references")
+
+      -- Toggle inlay hints (inferred types)
+      -- Works only on neovim version (+0.10.x) that natively support inlay hints
+      map("n", "<leader>ti", function()
+        if vim.lsp.inlay_hint then
+          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(bufnr), { bufnr = bufnr })
+        end
+      end, opts "LSP Toggle inlay hints")
 
       ---------------------------------------------------------------------------------------------
       -- Use rust-analyzer features not supported in generic LSP

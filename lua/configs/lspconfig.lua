@@ -21,7 +21,7 @@ end
 
 -- Experiment: does this show the inferred type?
 -- Available starting with neovim 0.10.x
---vim.lsp.inlay_hint.enable(true)
+-- vim.lsp.inlay_hint.enable(true)
 
 lspconfig.clangd.setup {
   on_attach = function(client, bufnr)
